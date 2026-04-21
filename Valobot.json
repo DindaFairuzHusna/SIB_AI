@@ -1,0 +1,114 @@
+{
+  "name": "Valobot",
+  "nodes": [
+    {
+      "parameters": {
+        "public": true,
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.chatTrigger",
+      "typeVersion": 1.4,
+      "position": [
+        -208,
+        0
+      ],
+      "id": "1abcdbfa-5a3f-4752-a3fb-459adc934155",
+      "name": "When chat message received",
+      "webhookId": "db66596a-7ff4-481b-9eb5-576f64361ac2"
+    },
+    {
+      "parameters": {
+        "options": {
+          "systemMessage": "Halo! 👋\nSelamat datang di layanan informasi STT Terpadu Nurul Fikri.\n\nKami siap membantu kamu mendapatkan informasi seputar pendaftaran mahasiswa baru, program studi, biaya kuliah, hingga kegiatan kampus. 🎓\n\nSilakan ketik pertanyaanmu atau pilih menu yang tersedia ya!"
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "typeVersion": 3.1,
+      "position": [
+        0,
+        0
+      ],
+      "id": "aa4356e9-efad-4646-a691-c19308440598",
+      "name": "AI Agent"
+    },
+    {
+      "parameters": {
+        "model": "llama-3.3-70b-versatile",
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatGroq",
+      "typeVersion": 1,
+      "position": [
+        0,
+        192
+      ],
+      "id": "0b8edce2-a51a-4488-a923-488cbd39e0e9",
+      "name": "Groq Chat Model",
+      "credentials": {
+        "groqApi": {
+          "id": "3jH2MPhXGpD6monn",
+          "name": "Groq account"
+        }
+      }
+    },
+    {
+      "parameters": {},
+      "type": "@n8n/n8n-nodes-langchain.memoryBufferWindow",
+      "typeVersion": 1.3,
+      "position": [
+        96,
+        208
+      ],
+      "id": "e096aec6-0c29-478b-bb6e-ec914cbb7e68",
+      "name": "Simple Memory"
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "When chat message received": {
+      "main": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Groq Chat Model": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Simple Memory": {
+      "ai_memory": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_memory",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": true,
+  "settings": {
+    "executionOrder": "v1",
+    "binaryMode": "separate"
+  },
+  "versionId": "4dcde409-24d7-45c6-904e-b9ad721e3b82",
+  "meta": {
+    "templateCredsSetupCompleted": true,
+    "instanceId": "283292dcb0988b5ddbd313b09f4eec8c7b2213edc99a699bc0deac608f3f3172"
+  },
+  "id": "nlYFmVG5dmmHnuh5",
+  "tags": []
+}
