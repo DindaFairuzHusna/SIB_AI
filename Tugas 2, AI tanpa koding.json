@@ -1,0 +1,183 @@
+{
+  "name": "Tugas 2, AI tanpa koding",
+  "nodes": [
+    {
+      "parameters": {
+        "updates": [
+          "message"
+        ],
+        "additionalFields": {}
+      },
+      "type": "n8n-nodes-base.telegramTrigger",
+      "typeVersion": 1.2,
+      "position": [
+        -96,
+        -96
+      ],
+      "id": "c19b0b99-05c8-4596-b6de-3b54898e7fc8",
+      "name": "Telegram Trigger",
+      "webhookId": "a3d12032-1f3d-4e57-b361-7db5a6cdf430",
+      "credentials": {
+        "telegramApi": {
+          "id": "UlPYstXt6Wb4ikkN",
+          "name": "Telegram account 2"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "={{ $json.message.text }}",
+        "options": {
+          "systemMessage": "# Garis Besar\nKamu asisten pelatihan NF Academy, yang siap menjawab pertanyaan dengan baik\nsesuai dengan bahasa yang digunakan penanya.\n# Tool\nJawablah pertanyaan tentang produk, deskripsi/uraian, biaya/harga, dan\ntempat/lokasi pelatihan sesuai dengan informasi yang tersedia dalam Tool Get\nrow(s) in sheet in Google Sheets\n# Batasan\nJika kamu tidak menemukan informasi produk, harga, dan tempat pelatihan, jangan\nmengarang jawaban. Berikan jawaban, \"Maaf, saya belum memiliki data yang Anda\nminta. Silakan lihat web nfacademy.id\""
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "typeVersion": 3.1,
+      "position": [
+        208,
+        0
+      ],
+      "id": "bab43d93-89ac-4ae7-aa1a-68a1be944e78",
+      "name": "AI Agent"
+    },
+    {
+      "parameters": {
+        "model": "llama-3.3-70b-versatile",
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatGroq",
+      "typeVersion": 1,
+      "position": [
+        128,
+        208
+      ],
+      "id": "52a8386a-eab4-4df5-bfaa-40b700c8fb0c",
+      "name": "Groq Chat Model",
+      "credentials": {
+        "groqApi": {
+          "id": "3jH2MPhXGpD6monn",
+          "name": "Groq account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "chatId": "={{ $('Telegram Trigger').item.json.message.chat.id }}",
+        "text": "={{ $json.output }}",
+        "additionalFields": {
+          "appendAttribution": false
+        }
+      },
+      "type": "n8n-nodes-base.telegram",
+      "typeVersion": 1.2,
+      "position": [
+        560,
+        0
+      ],
+      "id": "8b73bf6f-06cb-4464-aa77-37f21adb44e6",
+      "name": "Send a text message",
+      "webhookId": "0d16ea1b-e257-49ed-8e6c-6f4b130aff79",
+      "credentials": {
+        "telegramApi": {
+          "id": "UlPYstXt6Wb4ikkN",
+          "name": "Telegram account 2"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "descriptionType": "manual",
+        "toolDescription": "Gunakan tool ini untuk mendapatkan informasi produk, deskripsi pelatihan, biaya/harga, dan lokasi pelatihan di NF Academy.",
+        "documentId": {
+          "__rl": true,
+          "value": "1jGupBkkhJcyoq00V4aEtjC9nz4PzT9UHj0GUVw641xA",
+          "mode": "list",
+          "cachedResultName": "n8n 1",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1jGupBkkhJcyoq00V4aEtjC9nz4PzT9UHj0GUVw641xA/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "gid=0",
+          "mode": "list",
+          "cachedResultName": "Sheet1",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1jGupBkkhJcyoq00V4aEtjC9nz4PzT9UHj0GUVw641xA/edit#gid=0"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheetsTool",
+      "typeVersion": 4.7,
+      "position": [
+        416,
+        224
+      ],
+      "id": "c8898851-94ad-41ae-85dd-807f9363e17a",
+      "name": "Get row(s) in sheet in Google Sheets",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "GpsSAWgbNIMcJOKT",
+          "name": "Google Sheets account 2"
+        }
+      }
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "Telegram Trigger": {
+      "main": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Groq Chat Model": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "AI Agent": {
+      "main": [
+        [
+          {
+            "node": "Send a text message",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Get row(s) in sheet in Google Sheets": {
+      "ai_tool": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {
+    "executionOrder": "v1",
+    "binaryMode": "separate"
+  },
+  "versionId": "1e798923-a56a-478c-9b61-bf2e88683085",
+  "meta": {
+    "templateCredsSetupCompleted": true,
+    "instanceId": "283292dcb0988b5ddbd313b09f4eec8c7b2213edc99a699bc0deac608f3f3172"
+  },
+  "id": "GpXYmtbBkCEKRB0q",
+  "tags": []
+}
