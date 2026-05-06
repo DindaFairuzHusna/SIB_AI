@@ -1,0 +1,92 @@
+{
+  "name": "Tugas 4, Tanpa Koding",
+  "nodes": [
+    {
+      "parameters": {
+        "public": true,
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.chatTrigger",
+      "typeVersion": 1.4,
+      "position": [
+        0,
+        0
+      ],
+      "id": "69fff113-070f-4af5-9ab2-fdedd688fd50",
+      "name": "When chat message received",
+      "webhookId": "64abb918-e82c-4840-a5b0-f62933ce3c17"
+    },
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "=Kriteria Tulisan Ilmiah Tugas Akhir (TA)\n\nJUDUL TA\nJudul jelas berbentuk kata benda pekerjaan, ada informasi objek, dan ada cara atau\nmetode.\n\nBAB I PENDAHULUAN\n\nLatar Belakang komprehensif dan relevan mengantarkan pada urgensi\npermasalahan.\nRumusan Masalah jelas, logis, dan feasible untuk diselesaikan dan layak untuk level\nS1.\nTujuan Penelitian selaras dengan apa yang ingin dilakukan terhadap permasalahan.\nManfaat Penelitian jelas menggambarkan hal positif apa yang akan didapat berbagai\npihak ketika Tujuan Penelitian tercapai.\nBatasan Masalah menjelaskan pembatasan cakupan kegiatan, tools atau\nasumsi-asumsi yang dipakai.\nSistematika dituliskan dengan sesuai standar alur penulisan dengan penjelasan\nspesifik terkait kegiatan penelitian yang dilaksanakan.\n\nBAB II KAJIAN LITERATUR\nTerdapat penjelasan definisi-definisi yang terkait dengan topik permasalahan\nbeserta sitasinya.\nTerdapat penjelasan terkait teori keilmuan yang terkait dengan kegiatan\npenyelesaian masalah beserta sitasinya.\nTerdapat penjelasan terkait teknologi atau tools yang digunakan dalam kegiatan\npenyelesaian masalah.\nTerdapat perbandingan minimal 3 penelitian lain yang terkait dan penelitian yang\ndilakukan beserta ulasan perbedaan antara penelitian dalam bentuk tabel yang\nkemudian juga dijelaskan dalam paragraf.\n\nBAB III METODOLOGI\n\nTahapan penelitian dijelaskan sesuai dengan kegiatan yang dilakukan, disajikan\ndalam bentuk diagram alir dan dijelaskan lebih lanjut dalam paragraf.\nJenis penelitian disebutkan dengan tepat (eksploratif / deskriptif / eksplanatif /\nkomparasi / korelasi / pengembangan / tindakan / evaluatif dsb) berdasarkan tujuan\npenelitian serta menjelaskan luaran dari penelitian.\nMetode analisis data (kuantitatif / kualitatif) disebutkan dengan tepat sesuai jenis\ndata, cara/prosedur analisis yang akan digunakan termasuk cara interpretasi hasil,\nspesifik sesuai topik penelitian masing-masing.\nMetode pengumpulan data (wawancara / survei / eksperimen / observasi / studi\nliteratur ) disebutkan dengan tepat sesuai kegiatan dan bagaimana cara\npengumpulannya, spesifik sesuai topik penelitian masing-masing.\nMetode pengujian menjelaskan detail cara, prosedur dan instrumen untuk\npengujian, spesifik sesuai topik penelitian masing-masing.\n\nBAB IV ANALISIS DAN PEMBAHASAN\n\nTerdapat penjelasan rancangan yang diimplementasikan dalam penelitian (misal\ncara kerja, arsitektur sistem, flowchart, dsb).\nTerdapat penjelasan hasil implementasi rancangan penelitian beserta bukti-bukti\nnyatanya (screeenshot / foto / dsb).\nTerdapat hasil data pengujian yang lengkap dengan jumlah yang mencukupi sesuai\ndengan rencana pengujian dalam bentuk tabel dan grafik.\nTerdapat analisis evaluasi yang mendalam terhadap data hasil pengujian.\n\nBAB V KESIMPULAN DAN SARAN\n\nKesimpulan yang disajikan menjawab dengan jelas terhadap Rumusan Masalah.\nKesimpulan yang disajikan sesuai dengan hasil analisis evaluasi penelitian.\nSaran diberikan untuk penelitian selanjutnya dan berdasar pada penelitian yang\ntelah dilaksanakan.\n\nDAFTAR REFERENSI\nReferensi mencantumkan minimal 15 sumber rujukan primer (jurnal, prosiding, buku,\nartikel ilmiah lainnya) dengan tahun terbit paling lama 5 tahun terakhir dan minimal 2\ndi antaranya dari penelitian dosen Anda.\nABSTRAK\n\nAbstrak bahasa Indonesia telah lengkap berisi ringkasan latar belakang,\npermasalahan, apa yang dilakukan dalam penelitian, dan hasil akhir penelitian\nbeserta 3-5 kata kunci.\nAbstrak bahasa Inggris sesuai dengan isi Abstrak bahasa Indonesia dan disajikan\ndengan susunan kalimat bahasa Inggris yang wajar dan enak dibaca (penggunaan\nkata, grammar, dsb).\n\nPENULISAN (Format dan Gaya)\n\nPenulisan keseluruhan dokumen sesuai format (urutan, bagian, jenis dan ukuran\nfont dsb), bebas typo, memenuhi kaidah penulisan bahasa Indonesia yang baik\n(ejaan dan struktur kalimat) dan kaidah penulisan istilah asing (cetak miring).\nDokumen telah menggunakan daftar penerapan style, daftar isi otomatis, daftar\ngambar otomatis, daftar tabel otomatis dengan gaya penomoran yang benar.\nTerdapat penjelasan terhadap gambar dan tabel dalam tulisan dengan\nmenyebutkan nomor gambar/tabel.\nDokumen telah melakukan sitasi terhadap semua penggunaan sumber rujukan dan\nmenggunakan standar sitasi IEEE.",
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "typeVersion": 3.1,
+      "position": [
+        208,
+        0
+      ],
+      "id": "57e82f43-bd48-4f06-81e0-7c53d69a46cd",
+      "name": "AI Agent"
+    },
+    {
+      "parameters": {
+        "model": "llama-3.3-70b-versatile",
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatGroq",
+      "typeVersion": 1,
+      "position": [
+        80,
+        208
+      ],
+      "id": "98a9c223-b963-46ba-80bf-5c8eb40df327",
+      "name": "Groq Chat Model",
+      "credentials": {
+        "groqApi": {
+          "id": "3jH2MPhXGpD6monn",
+          "name": "Groq account"
+        }
+      }
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "When chat message received": {
+      "main": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Groq Chat Model": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {
+    "executionOrder": "v1",
+    "binaryMode": "separate"
+  },
+  "versionId": "603e7da5-8937-4091-aa58-ec27c1bcc920",
+  "meta": {
+    "templateCredsSetupCompleted": true,
+    "instanceId": "283292dcb0988b5ddbd313b09f4eec8c7b2213edc99a699bc0deac608f3f3172"
+  },
+  "id": "DrTxgbFJ2nip6Iko",
+  "tags": []
+}
